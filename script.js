@@ -28,11 +28,11 @@ console.log("Player Wins Vs Computer Wins " + playerCounter + " " + computerCoun
 }
 let playerCounter = 0;
 let computerCounter = 0;
-console.log(game());
-console.log(game());
-console.log(game());
-console.log(game());
-console.log(game());
+game();
+game();
+game();
+game();
+game();
 if(playerCounter > computerCounter){
     console.log("You're the WINNER!!");
 }else if (playerCounter < computerCounter){
