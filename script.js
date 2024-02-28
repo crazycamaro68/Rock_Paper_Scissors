@@ -1,15 +1,30 @@
 //RPS Stands for RPS
-const RPS = ["Rock", "Paper", "Scissors"]
+const RPS = ["Rock", "Paper", "Scissors"];
+let playerCounter = 0;
+let computerCounter = 0;
 
-function game(){
-//Set player choice and prints it out
-playerChoice = prompt("Enter your move");
+//Pulls objects from the dom
+let playerResult = document.querySelector('#playResult');
+let computerResult = document.querySelector('#computerResult');
+let playerScore = document.querySelector('#playersScore');
+let computerScore = document.querySelector('#computerScore');
+let endGame = document.querySelector('#end');
+let theGame = document.querySelector('body');
+
+
+function game(playerChoice){
+
+//Set player choice and shows it on screen and in console.
+playerResult.textContent = playerChoice;
 console.log("Player move = " + playerChoice) ;
 
 //Pulls random number from array length called rps and stores value in computerNumber
 let computerNumber = Math.floor(Math.random() * RPS.length);
 //Converts the random number from computerNumber and converts it to a string option from RPS
 let computerChoice = RPS[computerNumber];
+
+//Displays computers choice both on screen and in console.
+computerResult.textContent = computerChoice;
 console.log("Computer move = " + computerChoice);
 
 //This is the main fuction of the game. Checks player choice vs computer choice and determines a output
@@ -24,19 +39,65 @@ else if(playerChoice == "Rock" && computerChoice == "Scissors" || playerChoice =
     console.log("Tie!! or invalid input");
 }
 
+//Shows score on screen and console.
+playerScore.textContent = playerCounter;
+computerScore.textContent = computerCounter;
 console.log("Player Wins Vs Computer Wins " + playerCounter + " " + computerCounter);
-}
-let playerCounter = 0;
-let computerCounter = 0;
-game();
-game();
-game();
-game();
-game();
-if(playerCounter > computerCounter){
+
+//End Game. Will show winner and add restart button. 
+if(playerCounter == 5){
+    
     console.log("You're the WINNER!!");
-}else if (playerCounter < computerCounter){
+    endGame.remove();
+
+    let endButton = document.createElement('button');
+    endButton.textContent = "Restart";
+    endButton.addEventListener('click', function(){
+        window.location.reload()
+    })
+    
+    let winner = document.createElement('h1');
+    winner.textContent = "You're the winner";
+    theGame.appendChild(winner);
+    theGame.appendChild(endButton);
+
+}else if (computerCounter == 5){
     console.log("You LOSE!!");
-}else if (playerCounter == computerCounter){
-    console.log("TIE GAME");
+    endGame.remove();
+    
+    let endButton = document.createElement('button');
+    endButton.textContent = "Restart";
+    endButton.addEventListener('click', function(){
+        window.location.reload()
+    })
+    
+    let winner = document.createElement('h1');
+    winner.textContent = "You're a LOSER!";
+    theGame.appendChild(winner);
+    theGame.appendChild(endButton);
+    
 }
+}
+
+
+
+
+//adds functions to buttons
+let rockChoice = document.querySelector('#rock');
+let paperChoice = document.querySelector('#paper');
+let scissorChoice = document.querySelector('#scissors');
+
+rockChoice.addEventListener('click', function(){
+    game(RPS[0])
+});
+
+paperChoice.addEventListener('click', function() {
+     game(RPS[1])
+});
+
+scissorChoice.addEventListener('click', function(){
+    game(RPS[2])
+});
+
+
+
