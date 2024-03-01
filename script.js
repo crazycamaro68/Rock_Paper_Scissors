@@ -44,45 +44,37 @@ playerScore.textContent = playerCounter;
 computerScore.textContent = computerCounter;
 console.log("Player Wins Vs Computer Wins " + playerCounter + " " + computerCounter);
 
+
+const endItAll = function(winner){
+    let endDivGame = document.createElement('div');
+    endDivGame.setAttribute('id', 'endDiv');
+    
+    let endButton = document.createElement('button');
+    endButton.textContent = "Restart";
+    endButton.setAttribute('id', 'endButton');
+    endButton.addEventListener('click', function(){
+        window.location.reload()
+    })
+    
+    let headerText = document.createElement('h1');
+    headerText.textContent = winner;
+    theGame.appendChild(endDivGame)
+    endDivGame.appendChild(headerText);
+    endDivGame.appendChild(endButton);
+
+}
 //End Game. Will show winner and add restart button. 
 if(playerCounter == 5){
     
     console.log("You're the WINNER!!");
     endGame.remove();
+    endItAll("You're a Winner!!");
 
-    let endDivGame = document.createElement('div');
-    endDivGame.setAttribute('id', 'endDiv');
-    let endButton = document.createElement('button');
-    endButton.textContent = "Restart";
-    endButton.setAttribute('id', 'endButton');
-    endButton.addEventListener('click', function(){
-        window.location.reload()
-    })
-    
-    let winner = document.createElement('h1');
-    winner.textContent = "You're the winner";
-    theGame.appendChild(endDivGame)
-    endDivGame.appendChild(winner);
-    endDivGame.appendChild(endButton);
 
 }else if (computerCounter == 5){
     console.log("You LOSE!!");
     endGame.remove();
-    let endDivGame = document.createElement('div');
-    endDivGame.setAttribute('id', 'endDiv');
-    let endButton = document.createElement('button');
-    endButton.textContent = "Restart";
-    endButton.setAttribute('id', 'endButton');
-    endButton.addEventListener('click', function(){
-        window.location.reload()
-    })
-    
-    let winner = document.createElement('h1');
-    winner.textContent = "You're a LOSER!";
-    theGame.appendChild(endDivGame)
-    endDivGame.appendChild(winner);
-    endDivGame.appendChild(endButton);
-    
+    endItAll("You're a loser!!")
 }
 }
 
