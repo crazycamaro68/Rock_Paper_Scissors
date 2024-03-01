@@ -50,31 +50,38 @@ if(playerCounter == 5){
     console.log("You're the WINNER!!");
     endGame.remove();
 
+    let endDivGame = document.createElement('div');
+    endDivGame.setAttribute('id', 'endDiv');
     let endButton = document.createElement('button');
     endButton.textContent = "Restart";
+    endButton.setAttribute('id', 'endButton');
     endButton.addEventListener('click', function(){
         window.location.reload()
     })
     
     let winner = document.createElement('h1');
     winner.textContent = "You're the winner";
-    theGame.appendChild(winner);
-    theGame.appendChild(endButton);
+    theGame.appendChild(endDivGame)
+    endDivGame.appendChild(winner);
+    endDivGame.appendChild(endButton);
 
 }else if (computerCounter == 5){
     console.log("You LOSE!!");
     endGame.remove();
-    
+    let endDivGame = document.createElement('div');
+    endDivGame.setAttribute('id', 'endDiv');
     let endButton = document.createElement('button');
     endButton.textContent = "Restart";
+    endButton.setAttribute('id', 'endButton');
     endButton.addEventListener('click', function(){
         window.location.reload()
     })
     
     let winner = document.createElement('h1');
     winner.textContent = "You're a LOSER!";
-    theGame.appendChild(winner);
-    theGame.appendChild(endButton);
+    theGame.appendChild(endDivGame)
+    endDivGame.appendChild(winner);
+    endDivGame.appendChild(endButton);
     
 }
 }
